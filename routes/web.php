@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'guest'], function(){
+    Route::group(['middleware' => 'revalidate'], function () {
+        Route::get('/',              'HomeController@index')->name('login');
+        Route::post('authenticate',  'HomeController@login');
+    });
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'revalidate'], function () {
+        Route::get('/dashboard',      'HomeController@dashboard');
+        Route::post('logout',         'HomeController@logout')->name('logout');
+        Route::get('logout2',         'HomeController@logout')->name('logout');
+        Route::post('changepassword', 'HomeController@changepassword')->name('changepassword');
+    });
 });
