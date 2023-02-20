@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-6">
     <a href="/" class="brand-link">
-      <span class="brand-text font-weight-light">Sales Visitor</span>
+      <span class="brand-text font-weight-light">DMS Apps</span>
     </a>
 
     <div class="sidebar">

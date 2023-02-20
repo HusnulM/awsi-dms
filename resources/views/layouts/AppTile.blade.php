@@ -67,7 +67,7 @@
       </li> -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}" role="button">
-          <b>Sales Visitor</b>
+          <b>DMS Apps</b>
         </a>
       </li>
     </ul>
