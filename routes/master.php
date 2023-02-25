@@ -6,24 +6,22 @@ Route::get('/coba', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => '/master/item'], function () {
-        Route::get('/',             'Master\ItemMasterController@index')->middleware('checkAuth:master/item');
-        Route::get('/create',       'Master\ItemMasterController@create')->middleware('checkAuth:master/item');
-        Route::get('/edit/{p1}',    'Master\ItemMasterController@edit')->middleware('checkAuth:master/item');
-        Route::post('/save',        'Master\ItemMasterController@save')->middleware('checkAuth:master/item');
-        Route::post('/update',      'Master\ItemMasterController@update')->middleware('checkAuth:master/item');
-        Route::get('/delete/{id}',  'Master\ItemMasterController@delete')->middleware('checkAuth:master/item');  
-        Route::get('/itemlist',     'Master\ItemMasterController@itemLists')->middleware('checkAuth:master/item');  
-        Route::get('/itemcatlist',  'Master\ItemMasterController@itemCategoryLists')->middleware('checkAuth:master/item');  
-        Route::get('/uomlists',     'Master\ItemMasterController@uomLists')->middleware('checkAuth:master/item');  
-       
-        Route::post('/saveitemcategory', 'Master\ItemMasterController@saveitemcategory')->middleware('checkAuth:master/item');
-        Route::post('/saveuom',          'Master\ItemMasterController@saveuom')->middleware('checkAuth:master/item');
-
-        Route::post('/findpartnumber', 'Master\ItemMasterController@findPartnumber');
+    
+    Route::group(['prefix' => '/master/kategoridok'], function () {
+        Route::get('/',             'Master\KategoriDokumenController@index')->middleware('checkAuth:master/kategoridok');
+        Route::post('/save',        'Master\KategoriDokumenController@save')->middleware('checkAuth:master/kategoridok');
+        Route::post('/update',      'Master\KategoriDokumenController@update')->middleware('checkAuth:master/kategoridok');
+        Route::get('/delete/{id}',  'Master\KategoriDokumenController@delete')->middleware('checkAuth:master/kategoridok'); 
+        Route::get('/list',         'Master\KategoriDokumenController@listKategoriDokumen')->middleware('checkAuth:master/kategoridok');
     });
 
-    
+    Route::group(['prefix' => '/master/daftardokumen'], function () {
+        Route::get('/',             'Master\DaftarDokumenController@index')->middleware('checkAuth:master/daftardokumen');
+        Route::post('/save',        'Master\DaftarDokumenController@save')->middleware('checkAuth:master/daftardokumen');
+        Route::post('/update',      'Master\DaftarDokumenController@update')->middleware('checkAuth:master/daftardokumen');
+        Route::get('/delete/{id}',  'Master\DaftarDokumenController@delete')->middleware('checkAuth:master/daftardokumen'); 
+        Route::get('/list',         'Master\DaftarDokumenController@listKategoriDokumen')->middleware('checkAuth:master/daftardokumen');
+    });    
 
     Route::group(['prefix' => '/master/department'], function () {
         Route::get('/',             'Master\DepartmentMasterController@index')->middleware('checkAuth:master/department');
@@ -55,14 +53,4 @@ Route::group(['middleware' => 'auth'], function () {
         
     });
 
-    Route::group(['prefix' => '/master/toko'], function () {
-        Route::get('/',             'Master\TokoController@index')->middleware('checkAuth:master/toko');
-        Route::get('/create',       'Master\TokoController@create')->middleware('checkAuth:master/toko');
-        Route::get('/edit/{id}',    'Master\TokoController@edit')->middleware('checkAuth:master/toko');
-        Route::post('/save',        'Master\TokoController@save')->middleware('checkAuth:master/toko');
-        Route::post('/update',      'Master\TokoController@update')->middleware('checkAuth:master/toko');
-        Route::get('/delete/{id}',  'Master\TokoController@delete')->middleware('checkAuth:master/toko');  
-        Route::get('/listtoko',     'Master\TokoController@listToko')->middleware('checkAuth:master/toko');  
-        Route::post('/findtoko',    'Master\TokoController@findToko');
-    });
 });
