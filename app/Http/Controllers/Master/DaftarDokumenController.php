@@ -11,7 +11,7 @@ use Validator,Redirect,Response;
 class DaftarDokumenController extends Controller
 {
     public function index(){
-        return view('master.dokumen.kategori');
+        return view('master.dokumen.listdokumen');
     }
 
     public function findKateDoc(Request $request){
